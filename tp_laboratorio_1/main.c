@@ -15,8 +15,6 @@ int main()
     int resultadoFactorialDos;
 
     int flagDivision = 0; // para mostrar mensaje de error al intentar dividir por cero
-    int flagFactorialUno = 0; // para mostrar error al intentar calcular el factorial de un negativo
-    int flagFactorialDos = 0;
 
     // 1-2) Solicito el ingreso de los operandos:
     printf("Ingrese el primer operando: ");
@@ -41,18 +39,9 @@ int main()
     // 3-d) calculo la multiplicación:
     resultadoMultiplicacion = multiplicacion(operando1, operando2);
 
-    // 3-e) calculo el factorial:
-    if (operando1 < 0) {
-        flagFactorialUno = 1;
-    } else {
-        resultadoFactorialUno = factorial(operando1);
-    }
-
-    if (operando2 < 0) {
-        flagFactorialDos = 1;
-    } else {
-        resultadoFactorialDos = factorial(operando2);
-    }
+    // 3-e) calculo los factoriales:
+    resultadoFactorialUno = factorial(operando1);
+    resultadoFactorialDos = factorial(operando2);
 
     // 4-a) informo el resultado de la suma:
     printf("\nEl resultado de %d+%d es: %d\n", operando1, operando2, resultadoSuma);
@@ -71,13 +60,13 @@ int main()
     printf("El resultado de %d*%d es: %d\n", operando1, operando2, resultadoMultiplicacion);
 
     // 4-e) informo el resultado de los factoriales:
-    if (flagFactorialUno == 1) {
+    if (resultadoFactorialUno == -1) {
         printf("El factorial de %d es: inexistente", operando1);
     } else {
         printf("El factorial de %d es: %d", operando1, resultadoFactorialUno);
     }
 
-    if (flagFactorialDos == 1) {
+    if (resultadoFactorialDos == -1) {
         printf(" y el factorial de %d es: inexistente\n", operando2);
     } else {
         printf(" y el factorial de %d es: %d\n", operando2, resultadoFactorialDos);
