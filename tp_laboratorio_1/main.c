@@ -67,9 +67,9 @@ int main()
     }
 
     if (resultadoFactorialDos == -1) {
-        printf(" y el factorial de %d es: inexistente\n", operando2);
+        printf(" y El factorial de %d es: inexistente\n", operando2);
     } else {
-        printf(" y el factorial de %d es: %d\n", operando2, resultadoFactorialDos);
+        printf(" y El factorial de %d es: %d\n", operando2, resultadoFactorialDos);
     }
 
     return 0;
