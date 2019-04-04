@@ -122,6 +122,10 @@ int main()
                     } else {
                         printf(" y El factorial de %d es: %d\n\n", operando2, resultadoFactorialDos);
                     }
+
+                // reseteo la bandera para que sea necesario volver a calcular antes de mostrar resultados
+                    flagBotonTres = 0;
+
                 } else {
                     printf("No es posible mostrar los resultados. Revise los botones 1 a 3.\n\n");
                 }
@@ -136,6 +140,7 @@ int main()
             // al seleccionar un botón inválido
             printf("Boton invalido.\n\n");
         }
+
     } while (flagSalir);
 
     return 0;
