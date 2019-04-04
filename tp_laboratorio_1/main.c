@@ -22,14 +22,13 @@ int main()
     int resultadoFactorialUno;
     int resultadoFactorialDos;
 
-    int flagDivision = 0; // para mostrar mensaje de error al intentar dividir por cero
+    int flagDivision = 0; // para saber si se intenta dividir por cero
     int flagBotonTres = 0; // para saber si se calcularon las operaciones
 
     // botón 5:
     int flagSalir = 1; // para mostrar los botones de la calculadora hasta que el usuario quiera
 
     do {
-
         printf("Seleccione un boton de la calculadora:\n");
         if (flagBotonUno) {
             printf("1. Ingresar primer operando (A=%d)\n", operando1);
@@ -59,7 +58,7 @@ int main()
 
             case 2:
             // 1) Solicito el ingreso del segundo operando:
-                printf("Ingrese un numero entero como segundo operando: ");
+                printf("Ingrese un numero entero como segundo operando (B): ");
                 scanf("%d",&operando2);
                 printf("\nEl operando ingresado es: %d\n\n", operando2);
                 flagBotonDos = 1;
@@ -88,7 +87,6 @@ int main()
                     resultadoFactorialDos = factorial(operando2);
 
                     flagBotonTres = 1;
-
                     printf("Las operaciones fueron calculadas.\n\n");
                 } else {
                     printf("No es posible calcular las operaciones. Revise los operandos ingresados.\n\n");
@@ -119,7 +117,6 @@ int main()
                     } else {
                         printf("El factorial de %d es: %d", operando1, resultadoFactorialUno);
                     }
-
                     if (resultadoFactorialDos == -1) {
                         printf(" y El factorial de %d es: inexistente\n", operando2);
                     } else {
@@ -138,7 +135,6 @@ int main()
             default:
             // al seleccionar un botón inválido
             printf("Boton invalido.\n\n");
-
         }
     } while (flagSalir);
 
