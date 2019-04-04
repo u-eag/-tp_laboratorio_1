@@ -57,7 +57,7 @@ int main()
                 break;
 
             case 2:
-            // 1) Solicito el ingreso del segundo operando:
+            // 2) Solicito el ingreso del segundo operando:
                 printf("Ingrese un numero entero como segundo operando (B): ");
                 scanf("%d",&operando2);
                 printf("\nEl operando ingresado es: %d\n\n", operando2);
@@ -118,7 +118,7 @@ int main()
                         printf("El factorial de %d es: %d", operando1, resultadoFactorialUno);
                     }
                     if (resultadoFactorialDos == -1) {
-                        printf(" y El factorial de %d es: inexistente\n", operando2);
+                        printf(" y El factorial de %d es: inexistente\n\n", operando2);
                     } else {
                         printf(" y El factorial de %d es: %d\n\n", operando2, resultadoFactorialDos);
                     }
