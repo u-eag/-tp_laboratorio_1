@@ -6,15 +6,15 @@ int main()
 {
     int boton;
 
-    // botÛn 1:
+    // bot√≥n 1:
     int operando1;
-    int flagBotonUno = 0; // para saber si se ingresÛ el primer operando
+    int flagBotonUno = 0; // para saber si se ingres√≥ el primer operando
 
-    // botÛn 2:
+    // bot√≥n 2:
     int operando2;
-    int flagBotonDos = 0; // para saber si se ingresÛ el segundo operando
+    int flagBotonDos = 0; // para saber si se ingres√≥ el segundo operando
 
-    // botÛn 3:
+    // bot√≥n 3:
     int resultadoSuma;
     int resultadoResta;
     float resultadoDivision;
@@ -25,7 +25,7 @@ int main()
     int flagDivision = 0; // para saber si se intenta dividir por cero
     int flagBotonTres = 0; // para saber si se calcularon las operaciones
 
-    // botÛn 5:
+    // bot√≥n 5:
     int flagSalir = 1; // para mostrar los botones de la calculadora hasta que el usuario quiera
 
     do {
@@ -72,14 +72,14 @@ int main()
                 // 3-b) calculo la resta:
                     resultadoResta = resta(operando1, operando2);
 
-                // 3-c) calculo la divisiÛn:
+                // 3-c) calculo la divisi√≥n:
                     if (operando2 == 0) {
                         flagDivision = 1;
                     } else {
                         resultadoDivision = division(operando1, operando2);
                     }
 
-                // 3-d) calculo la multiplicaciÛn:
+                // 3-d) calculo la multiplicaci√≥n:
                     resultadoMultiplicacion = multiplicacion(operando1, operando2);
 
                 // 3-e) calculo los factoriales:
@@ -101,14 +101,14 @@ int main()
                 // 4-b) informo el resultado de la resta:
                     printf("El resultado de %d-%d es: %d\n", operando1, operando2, resultadoResta);
 
-                // 4-c) informo el resultado de la divisiÛn:
+                // 4-c) informo el resultado de la divisi√≥n:
                     if (flagDivision) {
                         printf("No es posible dividir por cero\n");
                     } else {
                         printf("El resultado de %d/%d es: %.2f\n", operando1, operando2, resultadoDivision);
                     }
 
-                // 4-d) informo el resultado de la multiplicaciÛn:
+                // 4-d) informo el resultado de la multiplicaci√≥n:
                     printf("El resultado de %d*%d es: %d\n", operando1, operando2, resultadoMultiplicacion);
 
                 // 4-e) informo el resultado de los factoriales:
@@ -123,8 +123,9 @@ int main()
                         printf(" y El factorial de %d es: %d\n\n", operando2, resultadoFactorialDos);
                     }
 
-                // reseteo la bandera para que sea necesario volver a calcular antes de mostrar resultados
+                // reseteo las banderas para que sea necesario volver a calcular antes de mostrar resultados
                     flagBotonTres = 0;
+                    flagDivision = 0;
 
                 } else {
                     printf("No es posible mostrar los resultados. Revise los botones 1 a 3.\n\n");
@@ -137,7 +138,7 @@ int main()
                 break;
 
             default:
-            // al seleccionar un botÛn inv·lido
+            // al seleccionar un bot√≥n inv√°lido
             printf("Boton invalido.\n\n");
         }
 
