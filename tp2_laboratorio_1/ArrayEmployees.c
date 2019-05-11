@@ -214,8 +214,8 @@ int modifyEmployee(Employee* list, int length, Sector* listSector, int lengthSec
     getInt(&idEmpleadoBuscado, "\nIngrese el id del empleado a modificar: ", "\nIngreso invalido\n\n", 0, 1000, 2);
 
     // chequeo que ese id pertenezca a un empleado existente:
-    if(list!=NULL && length>0)
-    {
+    //if(list!=NULL && length>0)
+    //{
         for(i=0;i<length;i++)
         {
             if(list[i].isEmpty == 0 && list[i].idEmployee == idEmpleadoBuscado)
@@ -228,9 +228,10 @@ int modifyEmployee(Employee* list, int length, Sector* listSector, int lengthSec
             else
             {
                 printf("\nEl id ingresado no pertenece a ningun empleado\n\n");
+                break;
             }
         }
-    }
+    //}
 
     if(flagEmpleadoEncontrado)
     {
@@ -300,6 +301,7 @@ int modifyEmployee(Employee* list, int length, Sector* listSector, int lengthSec
                     printSector(listSector, 5);
                     if(getInt(&aux.sector, "\nIngrese nuevo sector: ", "\nIngreso invalido \n\n", 1, 5, 2)==0)
                     {
+                        idSectorEncontrado = aux.sector; // para que se actualice la descripcion del sector al refrescarse la pantalla
                         list[indiceEmpleadoEncontrado].sector = aux.sector;
                         printf("El sector fue modificado exitosamente\n\n");
                         result=0;
