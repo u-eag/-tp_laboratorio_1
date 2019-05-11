@@ -81,7 +81,12 @@ int printEmployees(Employee* list, int length);
 
 int findEmptyIndex(Employee* list, int length, int* index);
 
-int modifyEmployee(Employee* list, int length);
+int modifyEmployee(Employee* list, int length, Sector* listSector, int lengthSector);
 
 int printSector(Sector* list, int length);
 
+int revisarExistanAltas(Employee* list, int length);
+
+int informarOrdenarPromediar(Employee* list, int length);
+
+int promediarSalarios(Employee* list, int length);
