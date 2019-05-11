@@ -84,9 +84,9 @@ int findEmployeeById(Employee* list, int len,int id)
     {
         for(i=0;i<len;i++)
         {
-            if(list[i].idEmployee == id)
+            if(list[i].isEmpty==0 && list[i].idEmployee == id)
             {
-                index=id;
+                index=i;
                 break;
             }
         }
@@ -98,9 +98,19 @@ int findEmployeeById(Employee* list, int len,int id)
 int removeEmployee(Employee* list, int len, int id)
 {
     int result=-1; // devuelve -1 si hay error y 0 si está todo ok
+    int flagEmpleadoEncontrado=0;
 
-    // busco al empleado por id:
-    if(list!=NULL && len>0 && list[id].isEmpty==0 && findEmployeeById(list, len, id)==0)
+    // chequeo que el id pertenezca a un empleado existente:
+    if(findEmployeeById(list, len, id) != -1) // la funcion devuelve -1 cuando da error
+    {
+        flagEmpleadoEncontrado = 1;
+    }
+    else
+    {
+        printf("\nEl id ingresado no pertenece a ningun empleado\n\n");
+    }
+
+    if(flagEmpleadoEncontrado)
     {
         // si lo encuentro lo doy de baja (lógica)
         list[id].isEmpty = 1; // 1 es vacío, 0 es que está ocupado
@@ -203,7 +213,6 @@ int modifyEmployee(Employee* list, int length, Sector* listSector, int lengthSec
 {
     int result=-1;
     int idEmpleadoBuscado;
-    int i;
     int indiceEmpleadoEncontrado;
     int flagEmpleadoEncontrado=0; // para indicar que se encontró al empleado buscado
     int idSectorEncontrado; // para mostrar la descripcion correspondiente al numero de sector del empleado
@@ -214,24 +223,16 @@ int modifyEmployee(Employee* list, int length, Sector* listSector, int lengthSec
     getInt(&idEmpleadoBuscado, "\nIngrese el id del empleado a modificar: ", "\nIngreso invalido\n\n", 0, 1000, 2);
 
     // chequeo que ese id pertenezca a un empleado existente:
-    //if(list!=NULL && length>0)
-    //{
-        for(i=0;i<length;i++)
-        {
-            if(list[i].isEmpty == 0 && list[i].idEmployee == idEmpleadoBuscado)
-            {
-                indiceEmpleadoEncontrado = i;
-                flagEmpleadoEncontrado = 1;
-                idSectorEncontrado = list[i].sector-1; // porque el array arranca en 0 pero los sectores en 1
-                break;
-            }
-            else
-            {
-                printf("\nEl id ingresado no pertenece a ningun empleado\n\n");
-                break;
-            }
-        }
-    //}
+    if(findEmployeeById(list, length, idEmpleadoBuscado) != -1)
+    {
+        indiceEmpleadoEncontrado = findEmployeeById(list, length, idEmpleadoBuscado);
+        idSectorEncontrado = list[indiceEmpleadoEncontrado].sector-1; // porque el array arranca en 0 pero los sectores en 1
+        flagEmpleadoEncontrado = 1;
+    }
+    else
+    {
+        printf("\nEl id ingresado no pertenece a ningun empleado\n\n");
+    }
 
     if(flagEmpleadoEncontrado)
     {
