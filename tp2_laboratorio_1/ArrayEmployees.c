@@ -114,12 +114,12 @@ int removeEmployee(Employee* list, int len, int id)
     {
         // si lo encuentro lo doy de baja (lógica)
         list[id].isEmpty = 1; // 1 es vacío, 0 es que está ocupado
-        printf("\nSe proceso exitosamente la baja de %s %s\n\n", list[id].name, list[id].lastName);
+        printf("\nSe proceso exitosamente la baja\n\n");
         result=0;
     }
     else
     {
-        printf("\nNo se procesó exitosamente la baja de %s %s\n\n", list[id].name, list[id].lastName);
+        printf("\nNo se procesó exitosamente la baja\n\n");
     }
 
     return result;
