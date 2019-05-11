@@ -26,7 +26,7 @@ int main()
 
     int r_hayAltas; // para guardar el retorno de la funcion que revisa si existe aunque sea un empleado dado de alta
 
-    initEmployees(arrayEmpleados,QTY_EMP); // inicializa el array de empleados
+    initEmployees(arrayEmpleados, QTY_EMP); // inicializa el array de empleados
 
     do{
         fflush(stdin);
@@ -40,7 +40,7 @@ int main()
         printf("5. Salir\n\n");
 
         printf("Seleccione una opcion del menu: ");
-        scanf("%d",&botonMenu);
+        scanf("%d", &botonMenu);
 
         switch(botonMenu)
         {
