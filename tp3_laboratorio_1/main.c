@@ -114,7 +114,7 @@ int main()
             case 8:
                 if(flagBoton1)
                 {
-                    //controller_saveAsText("data.csv",listaEmpleados);
+                    controller_saveAsText("data.csv",listaEmpleados);
                 }
                 else
                 {
