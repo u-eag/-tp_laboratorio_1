@@ -305,6 +305,26 @@ int controller_saveAsText(char* path , LinkedList* pArrayListEmployee)
  */
 int controller_saveAsBinary(char* path , LinkedList* pArrayListEmployee)
 {
-    return 1;
+    int retorno = 1;
+    Employee* pEmployee;
+    int i;
+
+    FILE* pFile = fopen(path,"wb");
+
+    if(pArrayListEmployee != NULL && pFile != NULL)
+    {
+
+        for (i=0;i<ll_len(pArrayListEmployee);i++)
+        {
+            pEmployee = ll_get(pArrayListEmployee, i);
+            fwrite(pEmployee,sizeof(Employee),1,pFile);
+        }
+
+        fclose(pFile);
+
+        retorno = 0;
+    }
+
+    return retorno;
 }
 

@@ -125,7 +125,7 @@ int main()
             case 9:
                 if(flagBoton2)
                 {
-                    //controller_saveAsBinary("data.bin",listaEmpleados);
+                    controller_saveAsBinary("data.bin",listaEmpleados);
                 }
                 else
                 {
