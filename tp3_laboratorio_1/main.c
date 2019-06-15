@@ -23,9 +23,11 @@
 int main()
 {
     int option = 0;
+    int flagBoton1 = 0; // para saber si cargó los datos desde el archivo de texto
+    int flagBoton2 = 0; // para saber si cargó los datos desde el archivo binario
     LinkedList* listaEmpleados = ll_newLinkedList();
     do{
-        getIntInRange(&option,"\nSeleccione una opción del menu: \n\n"
+        getIntInRange(&option,"\nSeleccione una opcion del menu: \n\n"
                       "1)Cargar los datos de los empleados desde el archivo (texto)\n"
                       "2)Cargar los datos de los empleados desde el archivo (binario)\n"
                       "3)Alta de empleado\n"
@@ -41,39 +43,94 @@ int main()
         switch(option)
         {
             case 1:
-                controller_loadFromText("data.csv",listaEmpleados);
+                if(!controller_loadFromText("data.csv",listaEmpleados))
+                {
+                    flagBoton1 = 1;
+                }
                 break;
 
             case 2:
-                controller_loadFromBinary("data.bin",listaEmpleados);
+                if(!controller_loadFromBinary("data.bin",listaEmpleados))
+                {
+                    flagBoton2 = 1;
+                }
                 break;
 
             case 3:
-                controller_addEmployee(listaEmpleados);
+                if(flagBoton1 || flagBoton2)
+                {
+                    controller_addEmployee(listaEmpleados);
+                }
+                else
+                {
+                    printf("\nEs necesario cargar los datos de los empleados del archivo de texto o binario antes de realizar esta accion\n\n");
+                }
                 break;
 
             case 4:
-                controller_editEmployee(listaEmpleados);
+                if(flagBoton1 || flagBoton2)
+                {
+                    controller_editEmployee(listaEmpleados);
+                }
+                else
+                {
+                    printf("\nEs necesario cargar los datos de los empleados del archivo de texto o binario antes de realizar esta accion\n\n");
+                }
                 break;
 
             case 5:
-                //controller_removeEmployee(listaEmpleados);
+                if(flagBoton1 || flagBoton2)
+                {
+                    controller_removeEmployee(listaEmpleados);
+                }
+                else
+                {
+                    printf("\nEs necesario cargar los datos de los empleados del archivo de texto o binario antes de realizar esta accion\n\n");
+                }
                 break;
 
             case 6:
-                //controller_ListEmployee(listaEmpleados);
+                if(flagBoton1 || flagBoton2)
+                {
+                    controller_ListEmployee(listaEmpleados);
+                }
+                else
+                {
+                    printf("\nEs necesario cargar los datos de los empleados del archivo de texto o binario antes de realizar esta accion\n\n");
+                }
                 break;
 
             case 7:
-                //controller_sortEmployee(listaEmpleados);
+                if(flagBoton1 || flagBoton2)
+                {
+                    //controller_sortEmployee(listaEmpleados);
+                }
+                else
+                {
+                    printf("\nEs necesario cargar los datos de los empleados del archivo de texto o binario antes de realizar esta accion\n\n");
+                }
                 break;
 
             case 8:
-                //controller_saveAsText("data.csv",listaEmpleados);
+                if(flagBoton1)
+                {
+                    //controller_saveAsText("data.csv",listaEmpleados);
+                }
+                else
+                {
+                    printf("\nEs necesario cargar los datos de los empleados del archivo de texto antes de realizar esta accion\n\n");
+                }
                 break;
 
             case 9:
-                //controller_saveAsBinary("data.bin",listaEmpleados);
+                if(flagBoton2)
+                {
+                    //controller_saveAsBinary("data.bin",listaEmpleados);
+                }
+                else
+                {
+                    printf("\nEs necesario cargar los datos de los empleados del archivo binario antes de realizar esta accion\n\n");
+                }
                 break;
         }
     }while(option != 10);

@@ -53,7 +53,7 @@
 	"LinkedList.h"
 	"Employee.h"
 
-1560552117 source:c:\users\admiral\documents\tp3_laboratorio_1\controller.c
+1560565383 source:c:\users\admiral\documents\tp3_laboratorio_1\controller.c
 	<stdio.h>
 	<stdlib.h>
 	"LinkedList.h"
@@ -63,11 +63,11 @@
 
 1560475979 c:\users\admiral\documents\tp3_laboratorio_1\linkedlist.h
 
-1560537126 c:\users\admiral\documents\tp3_laboratorio_1\employee.h
+1560565794 c:\users\admiral\documents\tp3_laboratorio_1\employee.h
 
-1560456546 c:\users\admiral\documents\tp3_laboratorio_1\validaciones.h
+1560565718 c:\users\admiral\documents\tp3_laboratorio_1\validaciones.h
 
-1560549561 source:c:\users\admiral\documents\tp3_laboratorio_1\main.c
+1560566509 source:c:\users\admiral\documents\tp3_laboratorio_1\main.c
 	<stdio.h>
 	<stdlib.h>
 	"LinkedList.h"
@@ -84,14 +84,14 @@
 	"Employee.h"
 	"validaciones.h"
 
-1560537019 source:c:\users\admiral\documents\tp3_laboratorio_1\employee.c
+1560566164 source:c:\users\admiral\documents\tp3_laboratorio_1\employee.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"Employee.h"
 	"validaciones.h"
 
-1560537140 source:c:\users\admiral\documents\tp3_laboratorio_1\validaciones.c
+1560565718 source:c:\users\admiral\documents\tp3_laboratorio_1\validaciones.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>

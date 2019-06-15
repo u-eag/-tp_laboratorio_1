@@ -202,6 +202,8 @@ int controller_removeEmployee(LinkedList* pArrayListEmployee)
                 {
                     ll_remove(pArrayListEmployee, id);
                     employee_delete(pEmployee); // para hacer el free
+                    retorno = 0;
+                    break;
                 }
             }
         }
@@ -219,7 +221,29 @@ int controller_removeEmployee(LinkedList* pArrayListEmployee)
  */
 int controller_ListEmployee(LinkedList* pArrayListEmployee)
 {
-    return 1;
+    int retorno = 1;
+    Employee* pEmployee;
+    int i;
+
+    if(pArrayListEmployee != NULL && ll_len(pArrayListEmployee) > 0) // que tenga aunque sea un elemento para listar
+    {
+        printf("\nID: \t Nombre: \t Horas Trabajadas: \t Sueldo: \n\n");
+
+        for (i=0;i<ll_len(pArrayListEmployee);i++)
+        {
+            pEmployee = ll_get(pArrayListEmployee, i);
+
+            if(pEmployee != NULL)
+            {
+                printf ("%d \t %s \t %d \t %d\n", pEmployee->id, pEmployee->nombre,
+                                                pEmployee->horasTrabajadas, pEmployee->sueldo);
+            }
+        }
+
+        retorno = 0;
+    }
+
+    return retorno;
 }
 
 /** \brief Ordenar empleados
