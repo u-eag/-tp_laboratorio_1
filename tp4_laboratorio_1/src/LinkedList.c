@@ -509,7 +509,7 @@ int ll_containsAll(LinkedList* this,LinkedList* this2) // buscar el negativo: el
     void* pElementThis2; // para guardar el elemento de la lista this2
     int contains_r; // para guardar el retorno de la función ll_contains
 
-    if(this != NULL && this2 != NULL)
+    if(this != NULL && this2 != NULL) // && ll_len(this) >= ll_len(this2))
     {
         for(i=0;i<ll_len(this2);i++) // recorro los elementos de this2 para ver si están en this
         {
@@ -517,7 +517,7 @@ int ll_containsAll(LinkedList* this,LinkedList* this2) // buscar el negativo: el
             pElementThis2 = ll_get(this2, i);
 
             if(pElementThis2 != NULL)
-                {
+            {
                 // ll_contains devuelve [1] si contiene el elemento, [0] si no lo contiene y [-1] si la lista es NULL
                 contains_r = ll_contains(this, pElementThis2);
 
@@ -526,11 +526,12 @@ int ll_containsAll(LinkedList* this,LinkedList* this2) // buscar el negativo: el
                     returnAux = 0; // el elemento no está en la lista
                     break; // no necesito seguir chequeando porque ya encontré un elemento que no está
                 }
-                else
-                {
-                    returnAux = 1; // el elemento está en la lista, todo de fiesta
-                }
             }
+        }
+
+        if(returnAux != 0)
+        {
+            returnAux = 1; // los elementos están en la lista, todo de fiesta
         }
     }
 
@@ -603,34 +604,37 @@ LinkedList* ll_clone(LinkedList* this) // llamo al sublist y le paso desde 0 has
 int ll_sort(LinkedList* this, int (*pFunc)(void* ,void*), int order)
 {
     int returnAux = -1;
+    Node* pNode1 = this->pFirstNode;
+    Node* pNode2 = this->pFirstNode->pNextNode;
     int i;
-    int j;
-    void* pElement1;
-    void* pElement2;
+    void* pElementAux;
 
-    if(this != NULL && (order == 0 || order == 1))
+    if(this != NULL && pFunc != NULL && (order == 0 || order == 1))
     {
-        for(i=0;i<ll_len(this)-1;i++)
+        for(i=1;i<ll_len(this);i++)
         {
-            for(j=i+1;ll_len(this);j++)
+            if(pNode1->pElement != NULL && pNode2->pElement != NULL)
             {
-                pElement1 = ll_get(this, i);
-                pElement2 = ll_get(this, j);
-
-                if(pElement1 != NULL && pElement2 != NULL && order == 1) // order 1 es ascendente
+                // le pregunto a la función pasada por parámetro si hago el swap (order 1 es ascendente)
+                if(order == 1 && pFunc(pNode1->pElement, pNode2->pElement) == 1) // devuelve 0 ó 1, cuando devuelve 1 hago el swap
                 {
-                    // le pregunto a la función pasada por parámetro si hago el swap
-                    if(pFunc(pElement1, pElement2) == 1) // devuelve 0 ó 1, cuando devuelve 1 hago el swap
-                    {
-
-                    }
+                    pElementAux = pNode1->pElement;
+                    pNode1->pElement = pNode2->pElement;
+                    pNode2->pElement = pElementAux;
                 }
-                else if(pElement1 != NULL && pElement2 != NULL && order == 0) // order o es descentente
+                else if(order == 0 && pFunc(pNode2->pElement, pNode1->pElement) == 1) // order 0 es descentente
                 {
-
+                    pElementAux = pNode2->pElement;
+                    pNode2->pElement = pNode1->pElement;
+                    pNode1->pElement = pElementAux;
                 }
+
+                pNode1 = pNode1->pNextNode;
+                pNode2 = pNode2->pNextNode;
             }
         }
+
+        returnAux = 0;
     }
 
     return returnAux;
