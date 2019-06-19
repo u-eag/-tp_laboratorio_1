@@ -611,9 +611,9 @@ int ll_sort(LinkedList* this, int (*pFunc)(void* ,void*), int order)
 
     if(this != NULL && pFunc != NULL && (order == 0 || order == 1))
     {
-        for(i=1;i<ll_len(this);i++)
+        for(i=0;i<ll_len(this);i++)
         {
-            if(pNode1->pElement != NULL && pNode2->pElement != NULL)
+            if(pNode1 != NULL && pNode2 != NULL)
             {
                 // le pregunto a la función pasada por parámetro si hago el swap (order 1 es ascendente)
                 if(order == 1 && pFunc(pNode1->pElement, pNode2->pElement) == 1) // devuelve 0 ó 1, cuando devuelve 1 hago el swap
@@ -628,16 +628,14 @@ int ll_sort(LinkedList* this, int (*pFunc)(void* ,void*), int order)
                     pNode2->pElement = pNode1->pElement;
                     pNode1->pElement = pElementAux;
                 }
-
-                pNode1 = pNode1->pNextNode;
-                pNode2 = pNode2->pNextNode;
             }
+
+            pNode1 = pNode1->pNextNode;
+            pNode2 = pNode2->pNextNode;
         }
 
         returnAux = 0;
     }
 
     return returnAux;
-
 }
-
