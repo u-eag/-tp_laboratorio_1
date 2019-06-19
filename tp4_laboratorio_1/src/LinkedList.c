@@ -604,29 +604,38 @@ LinkedList* ll_clone(LinkedList* this) // llamo al sublist y le paso desde 0 has
 int ll_sort(LinkedList* this, int (*pFunc)(void* ,void*), int order)
 {
     int returnAux = -1;
-    Node* pNode1 = this->pFirstNode;
-    Node* pNode2 = this->pFirstNode->pNextNode;
+    Node* pNode1;
+    Node* pNode2;
     int i;
     void* pElementAux;
 
     if(this != NULL && pFunc != NULL && (order == 0 || order == 1))
     {
-        for(i=0;i<ll_len(this);i++)
+        pNode1 = this->pFirstNode;
+        pNode2 = this->pFirstNode->pNextNode;
+
+        for(i=0;i<ll_len(this)-1;i++)
         {
             if(pNode1 != NULL && pNode2 != NULL)
             {
-                // le pregunto a la función pasada por parámetro si hago el swap (order 1 es ascendente)
-                if(order == 1 && pFunc(pNode1->pElement, pNode2->pElement) == 1) // devuelve 0 ó 1, cuando devuelve 1 hago el swap
+                // le pregunto a la función pasada por parámetro si hago el swap
+                if(order == 1) // order 1 es ascendente
                 {
-                    pElementAux = pNode1->pElement;
-                    pNode1->pElement = pNode2->pElement;
-                    pNode2->pElement = pElementAux;
+                    if(pFunc(pNode1->pElement, pNode2->pElement) == 1) // devuelve 0 ó 1, cuando devuelve 1 hago el swap
+                    {
+                        pElementAux = pNode1->pElement;
+                        pNode1->pElement = pNode2->pElement;
+                        pNode2->pElement = pElementAux;
+                    }
                 }
-                else if(order == 0 && pFunc(pNode2->pElement, pNode1->pElement) == 1) // order 0 es descentente
+                else // order 0 es descentente
                 {
-                    pElementAux = pNode2->pElement;
-                    pNode2->pElement = pNode1->pElement;
-                    pNode1->pElement = pElementAux;
+                    if(pFunc(pNode1->pElement, pNode2->pElement) == 0)
+                    {
+                        pElementAux = pNode1->pElement;
+                        pNode1->pElement = pNode2->pElement;
+                        pNode2->pElement = pElementAux;
+                    }
                 }
             }
 
