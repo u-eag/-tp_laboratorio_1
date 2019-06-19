@@ -1,3 +1,7 @@
+// 27/6 defensa TP4
+// 3/7 parcial de programación
+// 4/7 última clase: C#
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -294,6 +298,7 @@ int ll_remove(LinkedList* this,int index) // get
                 returnAux = 0;
             }
         }
+
     }
 
     return returnAux;
@@ -313,8 +318,8 @@ int ll_clear(LinkedList* this) // borra todos los nodos
 
     if(this != NULL)
     {
-        // otra opción: while(ll_len(this) != 0)
         while(this->size != 0) // mientras la lista tenga aunque sea un nodo...
+            // otra opción: ll_len(this);
         {
             ll_remove(this, 0); // ...llamo a la función para remover el nodo 0
             // remove decrementa el size cada vez que borra un nodo
@@ -384,19 +389,19 @@ int ll_indexOf(LinkedList* this, void* pElement) // for + get + if
                         ( 1) Si la lista esta vacia
  *
  */
-int ll_isEmpty(LinkedList* this) // if size (si es 0 està empty)
+int ll_isEmpty(LinkedList* this) // if size (si es 0 està empoty)
 {
-    int returnAux = -1; // retorna 0 cuando la lista es NULL
+    int returnAux = -1;
 
     if(this != NULL)
     {
         if(ll_len(this) == 0)
         {
-            returnAux = 1; // retorna 1 cuando la lista está vacía
+            returnAux = 1;
         }
         else
         {
-            returnAux = 0; // retorna 0 cuando la lista tiene aunque sea un nodo
+            returnAux = 0;
         }
     }
 
@@ -454,6 +459,8 @@ void* ll_pop(LinkedList* this,int index) // lamar a get, quedarse con el pElemen
             // remuevo el nodo
             ll_remove(this, index);
         }
+
+
     }
 
     return returnAux;
@@ -469,24 +476,8 @@ void* ll_pop(LinkedList* this,int index) // lamar a get, quedarse con el pElemen
                         ( 0) si No contiene el elemento
 */
 int ll_contains(LinkedList* this, void* pElement) // le pregunto al indexOf si el elemento existe
-                                                  // indexOf retorna el índice del elemento o -1
 {
     int returnAux = -1;
-    int indexOf_r; // para guardar el retorno de indexOf
-
-    if(this != NULL)
-    {
-        indexOf_r = ll_indexOf(this, pElement);
-
-        if(indexOf_r >= 0) // si indexOf retorna un índice es porque el elemento existe
-        {
-            returnAux = 1; // devuelvo [1] porque la lista this contiene al pElement
-        }
-        else // indexOf retorna -1 cuando no logra encontrar al elemento
-        {
-            returnAux = 0; // devuelvo [0] porque la lista this NO contiene al pElement
-        }
-    }
 
     return returnAux;
 }
@@ -501,39 +492,9 @@ int ll_contains(LinkedList* this, void* pElement) // le pregunto al indexOf si e
                         ( 0) si los elementos de (this2) NO estan contenidos en la lista (this)
 */
 int ll_containsAll(LinkedList* this,LinkedList* this2) // buscar el negativo: el elemento que no esté contenido
-// for + get + if (si el elemento no está retorno 0 y chau)
-// la 2da lista debe estar contenida en la 1ra
+// for + get + if (si el elemento no está retorno false y chau)
 {
     int returnAux = -1;
-    int i;
-    void* pElementThis2; // para guardar el elemento de la lista this2
-    int contains_r; // para guardar el retorno de la función ll_contains
-
-    if(this != NULL && this2 != NULL) // && ll_len(this) >= ll_len(this2))
-    {
-        for(i=0;i<ll_len(this2);i++) // recorro los elementos de this2 para ver si están en this
-        {
-            // ll_get devuelve el elemento del índice que pido
-            pElementThis2 = ll_get(this2, i);
-
-            if(pElementThis2 != NULL)
-            {
-                // ll_contains devuelve [1] si contiene el elemento, [0] si no lo contiene y [-1] si la lista es NULL
-                contains_r = ll_contains(this, pElementThis2);
-
-                if(contains_r == 0) // le pregunto a ll_contains si el pElementThis2 está en la lista de this
-                {
-                    returnAux = 0; // el elemento no está en la lista
-                    break; // no necesito seguir chequeando porque ya encontré un elemento que no está
-                }
-            }
-        }
-
-        if(returnAux != 0)
-        {
-            returnAux = 1; // los elementos están en la lista, todo de fiesta
-        }
-    }
 
     return returnAux;
 }
@@ -552,29 +513,11 @@ LinkedList* ll_subList(LinkedList* this,int from,int to) // crea una lista nueva
 // newLinkedList + for (desde hasta) + get + add
 {
     LinkedList* cloneArray = NULL;
-    int i;
-    Node* auxNode;
-
-    if(this != NULL && from >= 0 && to <= ll_len(this))
-    {
-        cloneArray = ll_newLinkedList();
-
-        if (cloneArray != NULL)
-        {
-            for(i=from;i<to;i++)
-            {
-                auxNode = getNode(this, i);
-
-                if (auxNode != NULL)
-                {
-                    addNode(cloneArray, i, auxNode->pElement);
-                }
-            }
-        }
-    }
 
     return cloneArray;
 }
+
+
 
 /** \brief Crea y retorna una nueva lista con los elementos de la lista pasada como parametro
  *
@@ -586,13 +529,9 @@ LinkedList* ll_clone(LinkedList* this) // llamo al sublist y le paso desde 0 has
 {
     LinkedList* cloneArray = NULL;
 
-    if(this != NULL)
-    {
-        cloneArray = ll_subList(this, 0, ll_len(this));
-    }
-
     return cloneArray;
 }
+
 
 /** \brief Ordena los elementos de la lista utilizando la funcion criterio recibida como parametro
  * \param pList LinkedList* Puntero a la lista
@@ -603,48 +542,13 @@ LinkedList* ll_clone(LinkedList* this) // llamo al sublist y le paso desde 0 has
  */
 int ll_sort(LinkedList* this, int (*pFunc)(void* ,void*), int order)
 {
-    int returnAux = -1;
-    Node* pNode1;
-    Node* pNode2;
-    int i;
-    void* pElementAux;
+    int returnAux =-1;
 
-    if(this != NULL && pFunc != NULL && (order == 0 || order == 1))
-    {
-        pNode1 = this->pFirstNode;
-        pNode2 = this->pFirstNode->pNextNode;
+    // le pregunto a la función pasada por parámetro si hago el swap
 
-        for(i=0;i<ll_len(this)-1;i++)
-        {
-            if(pNode1 != NULL && pNode2 != NULL)
-            {
-                // le pregunto a la función pasada por parámetro si hago el swap
-                if(order == 1) // order 1 es ascendente
-                {
-                    if(pFunc(pNode1->pElement, pNode2->pElement) == 1) // devuelve 0 ó 1, cuando devuelve 1 hago el swap
-                    {
-                        pElementAux = pNode1->pElement;
-                        pNode1->pElement = pNode2->pElement;
-                        pNode2->pElement = pElementAux;
-                    }
-                }
-                else // order 0 es descentente
-                {
-                    if(pFunc(pNode1->pElement, pNode2->pElement) == 0)
-                    {
-                        pElementAux = pNode1->pElement;
-                        pNode1->pElement = pNode2->pElement;
-                        pNode2->pElement = pElementAux;
-                    }
-                }
-            }
-
-            pNode1 = pNode1->pNextNode;
-            pNode2 = pNode2->pNextNode;
-        }
-
-        returnAux = 0;
-    }
+    //if((pFunc ( ll_get(i), ll_get(j) ) ) == 1) // devuelve 0 ó 1, cuando devuelve 1 hago el swap
 
     return returnAux;
+
 }
+
