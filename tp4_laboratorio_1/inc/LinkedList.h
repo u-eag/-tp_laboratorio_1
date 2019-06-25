@@ -31,8 +31,6 @@ struct LinkedList
 }typedef LinkedList;
 #endif
 
-
-
 //Publicas
 LinkedList* ll_newLinkedList(void);
 int ll_len(LinkedList* this);
@@ -53,3 +51,8 @@ int ll_containsAll(LinkedList* this,LinkedList* this2);
 LinkedList* ll_subList(LinkedList* this,int from,int to);
 LinkedList* ll_clone(LinkedList* this);
 int ll_sort(LinkedList* this, int (*pFunc)(void* ,void*), int order);
+
+// funciones extras:
+int ll_map(LinkedList* this, int (*pFunc)(void*)); // un mapeo
+int ll_reduce(LinkedList* this, int (*pFunc)(void*)); // un criterio para reducir la lista
+LinkedList* ll_filter(LinkedList* this, int (*pFunc)(void*)); // un criterio para crear una lista nueva
